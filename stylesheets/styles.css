@@ -1,0 +1,231 @@
+@font-face {
+  font-family: 'lakeshore';
+  src: url('fonts/LAKESHOR-webfont.eot');
+  src: url('fonts/LAKESHOR-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/LAKESHOR-webfont.woff') format('woff'),
+       url('fonts/LAKESHOR-webfont.ttf') format('truetype'),
+       url('fonts/LAKESHOR-webfont.svg#lakeshore') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'airstreamregular';
+  src: url('fonts/Airstream-webfont.eot');
+  src: url('fonts/Airstream-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/Airstream-webfont.woff') format('woff'),
+       url('fonts/Airstream-webfont.ttf') format('truetype'),
+       url('fonts/Airstream-webfont.svg#airstreamregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Allow the web page and its body to fill all of the space */
+html, body {
+  height: 100%;
+}
+
+body {
+  /* Direct children will be flex items, vertically */
+  display: flex;
+  flex-direction: column;
+
+  /* Default font-size, expected to be overriden as needed */
+  font-size: 10px;
+  /* A nice ocean like back ground color throughout the document */
+  background: rgb(149, 194, 215);
+}
+
+a {
+  /* Get ride of underscore in link text for this application */
+  text-decoration: none;
+}
+
+.main-header {
+  /* The main-header is a flex item of body that doesn't need to grow, and
+     can shrink as needed. */
+  flex: 0 1 auto;
+}
+
+/* logo-text is the text in the header */
+.logo-text {
+  background: white;
+
+  text-align: center;
+  text-transform: uppercase;
+  font-family: lakeshore;
+  font-size: 37px;
+}
+
+.main-content {
+  /* The main-content is a flex item of body that will take up as much
+     space as it can, and will grow and shrink as needed */
+  flex: 1 1 auto;
+
+  /* It also is a flex container for the thumbnail-list and
+     detail-image-container */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sibling selector to select all thumbnail-items except the first
+   one
+.thumbnail-item + .thumbnail-item {
+  margin-top: 10px;
+} */
+
+.thumbnail-list {
+  /* The thumbnail-list is a flex item of main-content that doesn't need to
+     grow, and can shrink as needed. */
+  flex: 0 1 auto;
+
+  /* Draw the thumnail-list after the detail image */
+  order: 2;
+  /* Put an equal amount of spacing between all children  */
+  justify-content: space-between;
+
+  /* It also is a flex container for all thumbnail-items */
+  display: flex;
+
+  /* get rid of bullets in the list for this application */
+  list-style: none;
+
+  /* get rid of image indentation. */
+  padding: 20px 0;
+  white-space: nowrap;
+  /* Create a scroll bar as needed */
+  overflow-x: auto;
+}
+
+.thumbnail-item {
+  /* Eliminate default white space around all thumbnails */
+  display: inline-block;
+
+  /* Better to use both of these than just "width" to eliminate size
+     variations */
+  min-width: 120px;
+  max-width: 120px;
+  border: 1px solid rgb(100%, 100%, 100%);
+  border: 1px solid rgba(100%, 100%, 100%, 0.8);
+
+  transition: transform 133ms ease-in-out;
+}
+
+.thumbnail-item:hover {
+  transform: scale(1.2);
+}
+
+.thumbnail-image {
+  /* Images should be sized with the container */
+  width: 100%;
+
+  /* Eliminate default white space under each image */
+  display: block;
+}
+
+.thumbnail-title {
+  /* thumbnail-titles are vertically positioned */
+  display: block;
+  margin: 0;
+  padding: 4px 10px;
+
+  background: rgb(96, 125,139);
+  color: rgb(202, 238, 255);
+
+  font-size: 18px;
+}
+
+.detail-image-container {
+  /* The detail-image-container is a flex item of main-content that will take
+     up as much space as it can, and will grow and shrink as needed */
+  flex: 1 1 auto;
+  order: 0;
+
+  /* It is also a flex container, where all flex items are center justified,
+     along both axis */
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.detail-image-frame {
+  /* We are going to position the detail-image-title relative to the
+     detail-image-frame */
+  position: relative;
+
+  /* This alignment only works horizontally */
+  text-align: center;
+
+  transition: transform 333ms cubic-bezier(1, 0.06, 0.28, 1);
+}
+
+.is-tiny {
+  transform: scale(0.001);
+  transition: transform 0ms;
+}
+
+.detail-image {
+  width: 90%;
+}
+
+.detail-image-title {
+  /* positioning of the detail-image-title relative to the detail-image-frame,
+     where the title is positioned at the absolute bottom left corner of
+     the detail-image-frame */
+  position: absolute;
+  bottom: -16px;
+  left: 4px;
+
+  font-family: airstreamregular;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.9) 1px 2px 9px;
+  font-size: 40px;
+}
+
+/* This part of the hidden-detail class will only be applicable when it is a
+   child (descendent) of detail-image-container */
+.hidden-detail .detail-image-container {
+  display: none;
+}
+
+/* When hidden-detail is used, the thumnail list should be vertical and
+   should be aligned in the center */
+.hidden-detail .thumbnail-list {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* We don't need max sized thumbnails when the detail is hidden, just a
+   bit larger than usual */
+.hidden-detail .thumbnail-item {
+  max-width: 80%;
+}
+
+@media all and (min-width: 768px) {
+  .main-content {
+    /* Horizontal layout of thumbnails and detail-image*/
+    flex-direction: row;
+
+    /* Thubnails should scroll as needed, independent of browser window */
+    overflow: hidden;
+  }
+
+  .thumbnail-list {
+    /* Vertical layout of thumbnail list */
+    flex-direction: column;
+    /* Draw the thumnails first, or on the left */
+    order: -1;
+    margin-left: 20px;
+
+    padding: 0 35px;
+  }
+
+  .thumbnail-item {
+    max-width: 260px;
+  }
+
+  /* Add a bit of top margin to all but the first thumbnail items */
+  .thumbnail-item + .thumbnail-item {
+    margin-top: 20px;
+  }
+}
