@@ -37,7 +37,7 @@ body {
 }
 
 a {
-  /* Get ride of underscore in link text for this application */
+  /* Get rid of underscore in link text for this application */
   text-decoration: none;
 }
 
@@ -182,13 +182,13 @@ a {
   font-size: 40px;
 }
 
-/* This part of the hidden-detail class will only be applicable when it is a
-   child (descendent) of detail-image-container */
+/* This part of the hidden-detail class will only be applicable when 
+   detail-image-container is a descendent */
 .hidden-detail .detail-image-container {
   display: none;
 }
 
-/* When hidden-detail is used, the thumnail list should be vertical and
+/* When hidden-detail is used, the thumbnail list should be vertical and
    should be aligned in the center */
 .hidden-detail .thumbnail-list {
   flex-direction: column;
@@ -201,6 +201,7 @@ a {
   max-width: 80%;
 }
 
+/* media queries to change styles when the screen is larger than 768 px wide */
 @media all and (min-width: 768px) {
   .main-content {
     /* Horizontal layout of thumbnails and detail-image*/
