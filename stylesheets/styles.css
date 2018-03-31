@@ -111,6 +111,7 @@ a {
   transition: transform 133ms ease-in-out;
 }
 
+/* Scale each thumbnail up a bit (20%) when the mouse hovers over it */
 .thumbnail-item:hover {
   transform: scale(1.2);
 }
@@ -182,21 +183,23 @@ a {
   font-size: 40px;
 }
 
-/* This part of the hidden-detail class will only be applicable when 
-   detail-image-container is a descendent */
+/* This will only be activated when the detail-image-container is a descendent 
+   of the hidden-detail class. It will hide the detail image. */
 .hidden-detail .detail-image-container {
   display: none;
 }
 
-/* When hidden-detail is used, the thumbnail list should be vertical and
-   should be aligned in the center */
+/* This will be activated when the thumbnail list is a descendent of 
+   the hidden-detail, and it will align the thumbnails vertically and
+   center them along the main axis */
 .hidden-detail .thumbnail-list {
   flex-direction: column;
   align-items: center;
 }
 
-/* We don't need max sized thumbnails when the detail is hidden, just a
-   bit larger than usual */
+/* This will be activated when the thumbnail item is a descendent of
+   the hidden-detail, and it will make each thumbnail be 805 of its
+   size. */
 .hidden-detail .thumbnail-item {
   max-width: 80%;
 }
@@ -207,7 +210,7 @@ a {
     /* Horizontal layout of thumbnails and detail-image*/
     flex-direction: row;
 
-    /* Thubnails should scroll as needed, independent of browser window */
+    /* Get rid of the scroll bar */
     overflow: hidden;
   }
 
